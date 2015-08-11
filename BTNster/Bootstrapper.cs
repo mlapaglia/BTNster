@@ -1,5 +1,6 @@
 ﻿namespace BTNster
 {
+    using BTNster.IRC;
     using Nancy;
     using Nancy.Conventions;
     using System.Threading;
@@ -26,7 +27,7 @@
         {
             base.ApplicationStartup(container, pipelines);
 
-            container.Register<IRCBots.Bot>().AsSingleton();
+            container.Register<Bot>().AsSingleton();
         }
     }
 }

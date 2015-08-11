@@ -1,4 +1,5 @@
-﻿using Nancy;
+﻿using BTNster.IRC;
+using Nancy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace BTNster.Modules
 {
     public class BotsModule : NancyModule
     {
-        public BotsModule(IRCBots.Bot ircBot)
+        public BotsModule(Bot ircBot)
         {
             Get["/Bots"] = parameters =>
             {
@@ -18,7 +19,11 @@ namespace BTNster.Modules
 
             Get["/Bots/Connect"] = parameters =>
             {
-                ircBot.Connect();
+                string site = "irc.what-network.org";
+                int port = 6697;
+                bool useSSL = true;
+                ircBot.Connect(site, port, useSSL);
+
                 return true;
             };
         }

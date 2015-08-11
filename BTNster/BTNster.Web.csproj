@@ -39,9 +39,6 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Meebey.SmartIrc4net">
-      <HintPath>..\References\Meebey.SmartIrc4net.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -57,9 +54,6 @@
     <Reference Include="Nancy.ViewEngines.Razor, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Nancy.Viewengines.Razor.1.2.0\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="StarkSoftProxy">
-      <HintPath>..\References\StarkSoftProxy.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -92,7 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="IrcBot.cs" />
     <Compile Include="Models\BotsModel.cs" />
     <Compile Include="Models\ConfigurationModel.cs" />
     <Compile Include="Models\Filters\EditFilterModel.cs" />
@@ -191,6 +184,12 @@
     <Content Include="Content\Scripts\jQuery\jquery-2.1.4.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BTNster.IRC\BTNster.IRC.csproj">
+      <Project>{ed4d1a37-a72c-4c76-922e-491714d5c6a6}</Project>
+      <Name>BTNster.IRC</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

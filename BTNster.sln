@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTNster", "BTNster\BTNster.csproj", "{68F5F5F3-B8BB-4911-875F-6F00AAE04EA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTNster.Web", "BTNster\BTNster.Web.csproj", "{68F5F5F3-B8BB-4911-875F-6F00AAE04EA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTNster.Data", "BTNster.Data\BTNster.Data.csproj", "{0BA3B190-1C94-427D-A062-970B548FBAA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTNster.IRC", "BTNster.IRC\BTNster.IRC.csproj", "{ED4D1A37-A72C-4C76-922E-491714D5C6A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTNster.Models", "BTNster.Modles\BTNster.Models.csproj", "{5E1B4C10-9602-4689-BB1B-8C12CCA866A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{68F5F5F3-B8BB-4911-875F-6F00AAE04EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68F5F5F3-B8BB-4911-875F-6F00AAE04EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68F5F5F3-B8BB-4911-875F-6F00AAE04EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BA3B190-1C94-427D-A062-970B548FBAA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BA3B190-1C94-427D-A062-970B548FBAA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BA3B190-1C94-427D-A062-970B548FBAA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BA3B190-1C94-427D-A062-970B548FBAA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED4D1A37-A72C-4C76-922E-491714D5C6A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED4D1A37-A72C-4C76-922E-491714D5C6A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED4D1A37-A72C-4C76-922E-491714D5C6A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED4D1A37-A72C-4C76-922E-491714D5C6A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E1B4C10-9602-4689-BB1B-8C12CCA866A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E1B4C10-9602-4689-BB1B-8C12CCA866A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E1B4C10-9602-4689-BB1B-8C12CCA866A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E1B4C10-9602-4689-BB1B-8C12CCA866A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

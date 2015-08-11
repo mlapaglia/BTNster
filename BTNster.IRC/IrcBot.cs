@@ -5,15 +5,12 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using BTNster;
 using Meebey.SmartIrc4net;
 
-namespace BTNster.IRCBots
+namespace BTNster.IRC
 {
     public class Bot
     {
-        #region Private Properties
-
         /// <summary>
         /// The thread responsible for listening to the IRC server, allows the rest of the bot to remain active
         /// </summary>
@@ -29,29 +26,10 @@ namespace BTNster.IRCBots
         /// </summary>
         private bool isDisconnectRequested = false;
 
-        #endregion
-
-        #region Protected Properties
-
-        /// <summary>
-        /// Abbreviation of the currently connected IRC server, used for debugging UI output
-        /// </summary>
-        protected string ircServerAbbreviation;
-
         /// <summary>
         /// The IRC client used to communicate with the server
         /// </summary>
         protected IrcClient irc;
-
-        /// <summary>
-        /// Lock file for the configuration and filters objects, ensuring both the bot and the parent UI thread
-        /// call them safely
-        /// </summary>
-        protected readonly object _Locker;
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         /// Returns whether the bot is connected or not
@@ -70,10 +48,6 @@ namespace BTNster.IRCBots
                 }
             }
         }
-
-        #endregion
-
-        #region Constructor
 
         public Bot()
         {
@@ -95,10 +69,6 @@ namespace BTNster.IRCBots
             irc.OnError += irc_OnError;
         }
 
-        #endregion
-
-        #region Abstract IRC Methods
-
         protected void irc_OnRegistered(object sender, EventArgs e)
         {
             irc.SendMessage(SendType.Message, "nickserv", String.Concat("IDENTIFY ", "password"));
@@ -106,10 +76,6 @@ namespace BTNster.IRCBots
             Thread.Sleep(2000);
             irc.RfcJoin("#whatbot");
         }
-
-        #endregion
-
-        #region Protected Events
 
         /// <summary>
         /// Handles errors sent from the server
@@ -199,10 +165,6 @@ namespace BTNster.IRCBots
            
         }
 
-        #endregion
-
-        #region Private Methods
-
         /// <summary>
         /// Sends a message to a channel/user
         /// </summary>
@@ -223,10 +185,6 @@ namespace BTNster.IRCBots
                 irc.Listen();
             }
         }
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         /// Used to disconnect the bot from the IRC server
@@ -252,12 +210,10 @@ namespace BTNster.IRCBots
         /// Used to connect the bot to the IRC server
         /// </summary>
         /// <returns></returns>
-        public void Connect()
+        public void Connect(string ircServerURL, int ircPort, bool useSSL)
         {
-            irc.UseSsl = true;
-            irc.Connect("irc.what-network.net", 6697);
+            irc.UseSsl = useSSL;
+            irc.Connect(ircServerURL, ircPort);
         }
-
-        #endregion
     }
 }
