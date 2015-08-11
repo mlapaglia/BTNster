@@ -1,0 +1,164 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<BTNster.Models.EditFilterModel>
+@{
+    Layout = "Views/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="col-xs-12">
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h1>
+                        @Model.FilterName <small>Modify Filter</small>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="form-group">
+            <div class="col-md-6">
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <label class="control-label">Filter Name</label>
+                        <input class="form-control" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Containers</label>
+                        <select id="selectContainers" class="form-control" multiple="multiple">
+                            @foreach (string container in Model.Containers)
+                        {
+                        <option value="@container">@container</option>
+                        }
+                        </select>
+                    </div>
+                    <div class="form-group form-group-lg">
+                        <label class="control-label">Sources</label>
+                        <select id="selectSources" class="form-control" multiple="multiple">
+                            @foreach (string source in Model.Sources)
+                {
+                        <option value="@source">@source</option>
+                }
+                        </select>
+                    </div>
+                    <div class="form-group form-group-lg">
+                        <label class="control-label">Resolutions</label>
+                        <select id="selectResolutions" class="form-control" multiple="multiple">
+                            @foreach (string resolution in Model.Resolutions)
+                {
+                        <option value="@resolution">@resolution</option>
+                }
+                        </select>
+                    </div>
+                    <div class="form-group form-group-lg">
+                        <label class="control-label">Codecs</label>
+                        <select id="selectCodecs" class="form-control" multiple="multiple">
+                            @foreach (string codec in Model.Codecs)
+                {
+                        <option value="@codec">@codec</option>
+                }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <input type="checkbox" checked data-toggle="toggle">
+                        <label class="control-label">Remember History</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <input type="checkbox" checked data-toggle="toggle">
+                        <label class="control-label">Download Better Releases</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <input type="checkbox" data-on="Yes" data-off="Yes" checked data-toggle="toggle">
+                        <input type="checkbox" data-on="No" data-off="No" checked data-toggle="toggle">
+                        <label class="control-label">Scene</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <label class="control-label">Start Date</label>
+                        <div class="input-group date">
+                            <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-lg">
+                        <label class="control-label">End Date</label>
+                        <div class="input-group date">
+                            <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="tableSeries" class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Series</th>
+                                    <th>Title</th>
+                                    <th>Season</th>
+                                    <th>Episode</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var series in Model.Series)
+                            {
+                            <tr>
+                                <td>
+                                    <input type="text" name="name" class="form-control" value="@series.SeriesName" />
+                                </td>
+                                <td>
+                                    <input type="text" name="name" class="form-control" value="@series.Title" />
+                                </td>
+                                <td>
+                                    <input type="text" name="name" class="form-control" value="@series.Season" />
+                                </td>
+                                <td>
+                                    <input type="text" name="name" class="form-control" value="@series.Episode" />
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                                </td>
+                            </tr>
+                            }
+                                <tr>
+                                    <td>
+                                        <input type="text" name="name" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" name="name" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" name="name" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" name="name" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    <div class="col-xs-12">
+        <div class="form-group pull-right">
+            <button type="submit" class="btn btn-success">Save <span class="glyphicon glyphicon-save"></span></button>
+            <button id="buttonCancel" type="submit" class="btn btn-default">Cancel</button>
+        </div>
+    </div>
+</div>
+<script src="~/scripts/Filters/editFilter.js"></script>
+<script src="~/scripts/Bootstrap/bootstrap-datepicker-1.4.0.js"></script>
