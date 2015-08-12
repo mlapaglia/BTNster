@@ -27,7 +27,22 @@ namespace BTNster.Data
 
         public static BTNRelease GetRelease(long releaseID)
         {
-            BTNRelease release = new BTNRelease();
+            using (BTNsterEntities db = new BTNsterEntities())
+            {
+                var release = db.BTNReleases.Where(x => x.ReleaseID == releaseID).FirstOrDefault();
+
+                if (release != null)
+                {
+                    return new BTNRelease()
+                    {
+                        Episode = release.Episode,
+                        ReleaseID = release.ReleaseID,
+                        Season = release.Season,
+                        Series = release.Series
+                    };
+                }
+            }
+
             return release;
         }
     }
