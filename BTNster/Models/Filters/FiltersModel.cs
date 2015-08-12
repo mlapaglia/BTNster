@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BTNster.Models
+namespace BTNster.Web.Models
 {
     public class FiltersModel
     {
@@ -54,6 +54,18 @@ namespace BTNster.Models
 
         public string Name { get; set; }
 
+        public bool RememberHistory { get; set; }
+
+        public bool DownloadBetterReleases { get; set; }
+
+        public bool SceneYes { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+
+        public bool SceneNo { get; set; }
+
         public bool Active { get; set; }
 
         public int MatchesLastHour { get; set; }
@@ -64,6 +76,14 @@ namespace BTNster.Models
 
         public int Errors { get; set; }
 
+        public List<string> Containers { get; set; }
+
+        public List<string> Sources { get; set; }
+
+        public List<string> Resolutions { get; set; }
+
+        public List<string> Codecs { get; set; }
+
         public Filter(int id, string name, bool active, int matchesLastHour, int matchesLastDay, int downloads, int errors)
         {
             ID = id;
@@ -73,6 +93,10 @@ namespace BTNster.Models
             MatchesLastDay = matchesLastDay;
             Downloads = downloads;
             Errors = errors;
+            Containers = new List<string>();
+            Resolutions = new List<string>();
+            Codecs = new List<string>();
+            Sources = new List<string>();
         }
     }
 }

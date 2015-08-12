@@ -101,7 +101,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Content\CSS\bootstrap-datepicker3.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -154,7 +156,9 @@
     <None Include="Views\Status\Index.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="web.config" />
+    <None Include="web.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Fonts\glyphicons-halflings-regular.svg">
@@ -189,6 +193,10 @@
     <ProjectReference Include="..\BTNster.IRC\BTNster.IRC.csproj">
       <Project>{ed4d1a37-a72c-4c76-922e-491714d5c6a6}</Project>
       <Name>BTNster.IRC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BTNster.Modles\BTNster.Models.csproj">
+      <Project>{5e1b4c10-9602-4689-bb1b-8c12cca866a8}</Project>
+      <Name>BTNster.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

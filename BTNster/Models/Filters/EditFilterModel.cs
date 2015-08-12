@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BTNster.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace BTNster.Models
 {
     public class EditFilterModel
     {
+        public Filter Filter { get; set; }
+
         public string FilterName { get; set; }
 
         public List<string> Sources { get; set; }

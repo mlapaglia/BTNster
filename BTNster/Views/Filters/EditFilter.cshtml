@@ -1,4 +1,5 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<BTNster.Models.EditFilterModel>
+﻿@using System.Linq
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<BTNster.Models.EditFilterModel>
 @{
     Layout = "Views/_Layout.cshtml";
 }
@@ -20,61 +21,65 @@
                 <div class="col-md-6">
                     <div class="form-group form-group-lg">
                         <label class="control-label">Filter Name</label>
-                        <input class="form-control" type="text" />
+                        <input class="form-control" type="text" value="@Model.FilterName" />
                     </div>
                     <div class="form-group">
                         <label class="control-label">Containers</label>
                         <select id="selectContainers" class="form-control" multiple="multiple">
                             @foreach (string container in Model.Containers)
-                        {
-                        <option value="@container">@container</option>
-                        }
+                            {
+                                <option @if(Model.Filter.Containers.Where(x => x == container).Any()) 
+                                        { <text>selected</text> } value="@container" >@container</option>
+                            }
                         </select>
                     </div>
                     <div class="form-group form-group-lg">
                         <label class="control-label">Sources</label>
                         <select id="selectSources" class="form-control" multiple="multiple">
                             @foreach (string source in Model.Sources)
-                {
-                        <option value="@source">@source</option>
-                }
+                            {
+                                <option @if (Model.Filter.Sources.Where(x => x == source).Any()) 
+                                        { <text>selected</text>  } value="@source">@source</option>
+                            }
                         </select>
                     </div>
                     <div class="form-group form-group-lg">
                         <label class="control-label">Resolutions</label>
                         <select id="selectResolutions" class="form-control" multiple="multiple">
                             @foreach (string resolution in Model.Resolutions)
-                {
-                        <option value="@resolution">@resolution</option>
-                }
+                            {
+                                <option @if (Model.Filter.Resolutions.Where(x => x == resolution).Any()) 
+                                        { <text>selected</text>  } value="@resolution">@resolution</option>
+                            }
                         </select>
                     </div>
                     <div class="form-group form-group-lg">
                         <label class="control-label">Codecs</label>
                         <select id="selectCodecs" class="form-control" multiple="multiple">
                             @foreach (string codec in Model.Codecs)
-                {
-                        <option value="@codec">@codec</option>
-                }
+                            {
+                                <option @if (Model.Filter.Codecs.Where(x => x == codec).Any()) 
+                                        { <text>selected</text> } value="@codec">@codec</option>
+                            }
                         </select>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group form-group-lg">
-                        <input type="checkbox" checked data-toggle="toggle">
+                        <input type="checkbox" checked data-toggle="toggle" @if(Model.Filter.RememberHistory) { <text>checked</text> }>
                         <label class="control-label">Remember History</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group form-group-lg">
-                        <input type="checkbox" checked data-toggle="toggle">
+                        <input type="checkbox" checked data-toggle="toggle" @if (Model.Filter.DownloadBetterReleases) { <text> checked</text> }>
                         <label class="control-label">Download Better Releases</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group form-group-lg">
-                        <input type="checkbox" data-on="Yes" data-off="Yes" checked data-toggle="toggle">
-                        <input type="checkbox" data-on="No" data-off="No" checked data-toggle="toggle">
+                        <input type="checkbox" data-on="Yes" data-off="Yes" checked data-toggle="toggle" @if (Model.Filter.SceneYes) { <text> checked</text> }>
+                        <input type="checkbox" data-on="No" data-off="No" checked data-toggle="toggle" @if (Model.Filter.SceneNo) { <text> checked</text> }>
                         <label class="control-label">Scene</label>
                     </div>
                 </div>
@@ -82,7 +87,7 @@
                     <div class="form-group form-group-lg">
                         <label class="control-label">Start Date</label>
                         <div class="input-group date">
-                            <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                            <input type="text" class="form-control" value="@Model.Filter.StartDate.ToShortDateString()"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                         </div>
                     </div>
                 </div>
@@ -90,7 +95,7 @@
                     <div class="form-group form-group-lg">
                         <label class="control-label">End Date</label>
                         <div class="input-group date">
-                            <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                            <input type="text" class="form-control" value="@Model.Filter.EndDate.ToShortDateString()"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                         </div>
                     </div>
                 </div>
@@ -109,7 +114,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var series in Model.Series)
+                                @foreach (BTNster.Models.Series series in Model.Series)
                             {
                             <tr>
                                 <td>
@@ -161,4 +166,3 @@
     </div>
 </div>
 <script src="~/scripts/Filters/editFilter.js"></script>
-<script src="~/scripts/Bootstrap/bootstrap-datepicker-1.4.0.js"></script>
