@@ -7,7 +7,7 @@
     <ProjectGuid>{68F5F5F3-B8BB-4911-875F-6F00AAE04EA6}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WinWhatAuto</RootNamespace>
+    <RootNamespace>BTNster.Web</RootNamespace>
     <AssemblyName>NancyApplication1</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -88,7 +88,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Models\BotsModel.cs" />
+    <Compile Include="Models\Bots\BotsModel.cs" />
+    <Compile Include="Models\Bots\EditBotsModel.cs" />
     <Compile Include="Models\ConfigurationModel.cs" />
     <Compile Include="Models\Filters\EditFilterModel.cs" />
     <Compile Include="Models\Filters\FiltersModel.cs" />
@@ -137,6 +138,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
+    <None Include="Views\Bots\EditBot.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Views\Bots\Index.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -173,6 +177,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Scripts\Bootstrap\bootstrap-toggle-2.2.0.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Scripts\Bots\editBot.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Scripts\Bots\bots.js">

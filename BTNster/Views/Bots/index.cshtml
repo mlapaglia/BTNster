@@ -1,4 +1,4 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<BTNster.Web.Models.BotsModel>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<BTNster.Web.Models.Bots.BotsModel>
 @{
     Layout = "Views/_Layout.cshtml";
 }
@@ -48,7 +48,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (BTNster.Web.Models.Bot bot in Model.Bots)
+                    @foreach (BTNster.Web.Models.Bots.Bot bot in Model.Bots)
                     {
                         <tr>
                             <td>@bot.SiteName</td>
@@ -64,7 +64,7 @@
                             <td>
                                 <a class="btn btn-default editFilter" href="/Bots/Edit?BotID=@bot.BotID" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
                                 <a class="btn btn-default btn-danger deleteFilter" href="/Bots/Delete?BotID=@bot.BotID" role="button"><span class="glyphicon glyphicon-trash"></span></a>
-                                <input class="toggleFilter" type="checkbox" checked data-toggle="toggle" />
+                                <input class="toggleBot" data-botid="@bot.BotID" type="checkbox" checked data-toggle="toggle" />
                             </td>
                         </tr>
                     }
@@ -73,3 +73,4 @@
         </div>
     </div>
 </div>
+<script src="~/scripts/Bots/bots.js"></script>

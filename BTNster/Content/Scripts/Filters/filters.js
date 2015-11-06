@@ -1,5 +1,4 @@
-$(document).ready(function() {
-    $('#toggleFilter').click({
-        debugger;
-});
+$(document).ready(function () {
+    $('.toggleFilter').click(function() {
+    });
 });

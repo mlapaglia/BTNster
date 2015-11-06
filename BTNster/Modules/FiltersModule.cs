@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BTNster.Models;
-using BTNster.Web.Models;
+using BTNster.Web.Models.Filters;
 
 namespace BTNster.Modules
 {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BTNster.Models
+namespace BTNster.Web.Models.Filters
 {
     public class EditFilterModel
     {

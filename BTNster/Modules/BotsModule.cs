@@ -1,5 +1,6 @@
 ﻿using BTNster.IRC;
 using BTNster.Web.Models;
+using BTNster.Web.Models.Bots;
 using Nancy;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace BTNster.Modules
             {
                 BotsModel model = new BotsModel();
 
-                model.Bots.Add(new Web.Models.Bot()
+                model.Bots.Add(new Web.Models.Bots.Bot()
                 {
                     BotID = 1,
                     Errors = 0,

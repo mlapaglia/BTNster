@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BTNster.Web.Models
+namespace BTNster.Web.Models.Bots
 {
     public class BotsModel
     {
+        /// <summary>
+        /// The total amount of bots configured in the system
+        /// </summary>
         public int TotalBots
         {
             get
@@ -16,6 +19,9 @@ namespace BTNster.Web.Models
             }
         }
 
+        /// <summary>
+        /// The number of bots currently connected to their network
+        /// </summary>
         public int ActiveBots
         {
             get
@@ -24,6 +30,9 @@ namespace BTNster.Web.Models
             }
         }
 
+        /// <summary>
+        /// The number of bots currently experiencing uncleared errors
+        /// </summary>
         public int BotsWithErrors
         {
             get
@@ -32,6 +41,9 @@ namespace BTNster.Web.Models
             }
         }
 
+        /// <summary>
+        /// The number of bots currently in the connecting phase
+        /// </summary>
         public int BotsConnecting
         {
             get
@@ -40,8 +52,14 @@ namespace BTNster.Web.Models
             }
         }
 
+        /// <summary>
+        /// The list of Bots currently configured in the system, used on the UI
+        /// </summary>
         public List<Bot> Bots { get; set; }
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public BotsModel()
         {
             Bots = new List<Bot>();

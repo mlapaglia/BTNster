@@ -1,4 +1,4 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<BTNster.Web.Models.FiltersModel>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<BTNster.Web.Models.Filters.FiltersModel>
 @{
     Layout = "Views/_Layout.cshtml";
 }
@@ -60,7 +60,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (BTNster.Web.Models.Filter filter in Model.Filters)
+                        @foreach (BTNster.Web.Models.Filters.Filter filter in Model.Filters)
                         {
                             <tr>
                                 <td>@filter.ID</td>

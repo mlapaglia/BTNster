@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BTNster.Web.Models
+namespace BTNster.Web.Models.Filters
 {
     public class FiltersModel
     {
