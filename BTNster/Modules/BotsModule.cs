@@ -1,4 +1,5 @@
 ﻿using BTNster.IRC;
+using BTNster.Web.Models;
 using Nancy;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,22 @@ namespace BTNster.Modules
 {
     public class BotsModule : NancyModule
     {
-        public BotsModule(Bot ircBot)
+        public BotsModule(IRC.Bot ircBot)
         {
             Get["/Bots"] = parameters =>
             {
-                return View["Index"];
+                BotsModel model = new BotsModel();
+
+                model.Bots.Add(new Web.Models.Bot()
+                {
+                    BotID = 1,
+                    Errors = 0,
+                    IsConnected = true,
+                    IsConnecting = false,
+                    SiteName = "BTN",
+                });
+
+                return View["Index", model];
             };
 
             Get["/Bots/Connect"] = parameters =>

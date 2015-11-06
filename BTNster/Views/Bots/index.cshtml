@@ -1,36 +1,75 @@
-﻿@{
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<BTNster.Web.Models.BotsModel>
+@{
     Layout = "Views/_Layout.cshtml";
 }
-<div class="jumbotron">
-    <div class="container">
-        <h1>BTNster</h1>
-        <p>Welcome to BTNster, the easy way to autodownload torrents!</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-    </div>
-</div>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
-            <h2><span class="glyphicon glyphicon-cog"></span> Configuration</h2>
-            <p>Configure the system</p>
-            <p><a class="btn btn-default" href="/Configuration" role="button">Configuration &raquo;</a></p>
-        </div>
-        <div class="col-md-3">
-            <h2><span class="glyphicon glyphicon-tasks"></span> Bots</h2>
-            <p>Control the bots</p>
-            <p><a class="btn btn-default" href="/Bots" role="button">Bots &raquo;</a></p>
-        </div>
-        <div class="col-md-3">
-            <h2><span class="glyphicon glyphicon-th-list"></span> Filters</h2>
-            <p>Filter setup and configuration</p>
-            <p><a class="btn btn-default" href="/Filters" role="button">Filters &raquo;</a></p>
-        </div>
-        <div class="col-md-3">
-            <h2><span class="glyphicon glyphicon-stats"></span> Status</h2>
-            <p>View current system status</p>
-            <p><a class="btn btn-default" href="/Status" role="button">System Status &raquo;</a></p>
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Broadcasthe.net <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">What.CD</a></li>
+            </ul>
         </div>
     </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">Bots</h1>
+        <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <h1>@Model.TotalBots</h1>
+                <h4>Total Bots</h4>
+                <span class="text-muted">total bots currently present</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <h1>@Model.ActiveBots</h1>
+                <h4>Active Bots</h4>
+                <span class="text-muted">total bots currently enabled</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <h1>@Model.BotsWithErrors</h1>
+                <h4>Bots with Errors</h4>
+                <span class="text-muted">disconnected due to error</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <h1>@Model.BotsConnecting</h1>
+                <h4>Bots Connecting</h4>
+                <span class="text-muted">bots currently connecting</span>
+            </div>
+        </div>
 
-    <hr>
+        <h2 class="sub-header">Current Bots</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Bot Name</th>
+                        <th>Connected</th>
+                        <th>Connecting</th>
+                        <th>Errors</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (BTNster.Web.Models.Bot bot in Model.Bots)
+                    {
+                        <tr>
+                            <td>@bot.SiteName</td>
+                            <td>@bot.IsConnected</td>
+                            <td>@bot.IsConnecting</td>
+                            <td>
+                                @bot.Errors
+                                @if (bot.Errors > 0)
+                                {
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                }
+                            </td>
+                            <td>
+                                <a class="btn btn-default editFilter" href="/Bots/Edit?BotID=@bot.BotID" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a class="btn btn-default btn-danger deleteFilter" href="/Bots/Delete?BotID=@bot.BotID" role="button"><span class="glyphicon glyphicon-trash"></span></a>
+                                <input class="toggleFilter" type="checkbox" checked data-toggle="toggle" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

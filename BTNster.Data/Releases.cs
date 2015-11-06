@@ -1,10 +1,4 @@
-﻿using BTNster.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace BTNster.Data
 {
@@ -41,9 +35,9 @@ namespace BTNster.Data
                         Series = release.Series
                     };
                 }
-            }
 
-            return release;
+                return release;
+            }
         }
     }
 }

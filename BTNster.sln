@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTNster.Web", "BTNster\BTNster.Web.csproj", "{68F5F5F3-B8BB-4911-875F-6F00AAE04EA6}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTNster.Data", "BTNster.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTNster.IRC", "BTNster.IRC\BTNster.IRC.csproj", "{ED4D1A37-A72C-4C76-922E-491714D5C6A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTNster.Models", "BTNster.Modles\BTNster.Models.csproj", "{5E1B4C10-9602-4689-BB1B-8C12CCA866A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTNster.Models", "BTNster.Models\BTNster.Models.csproj", "{5E1B4C10-9602-4689-BB1B-8C12CCA866A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

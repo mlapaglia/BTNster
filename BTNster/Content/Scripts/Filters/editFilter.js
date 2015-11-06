@@ -2,6 +2,7 @@ $(document).ready(function() {
     $('#selectContainers, #selectSources, #selectCodecs, #selectResolutions').multiselect({
         buttonWidth: '100%'
     });
+
     $('#toggle-one').bootstrapToggle();
 
     $('.input-group.date').datepicker({
@@ -23,5 +24,9 @@ $(document).ready(function() {
 
     $('#buttonCancel').click(function () {
         window.location.href = '/Filters';
+    });
+
+    $('#buttonSave').click(function () {
+
     });
 });
