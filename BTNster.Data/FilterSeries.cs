@@ -12,14 +12,15 @@ namespace BTNster.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class BTNRelease
+    public partial class FilterSeries
     {
-        public long ReleaseID { get; set; }
-        public long BTNReleaseID { get; set; }
-        public string Series { get; set; }
-        public Nullable<long> Season { get; set; }
-        public Nullable<long> Episode { get; set; }
+        public long FilterID { get; set; }
+        public long FilterSeriesID { get; set; }
+        public string SeriesName { get; set; }
+        public string SeriesTitle { get; set; }
+        public Nullable<long> SeasonNumber { get; set; }
+        public Nullable<long> EpisodeNumber { get; set; }
     
-        public virtual Release Release { get; set; }
+        public virtual Filter Filter { get; set; }
     }
 }

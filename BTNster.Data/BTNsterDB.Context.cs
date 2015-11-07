@@ -25,7 +25,9 @@ namespace BTNster.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Release> Releases { get; set; }
-        public virtual DbSet<BTNRelease> BTNReleases { get; set; }
+        public virtual DbSet<BTNRelease> BTNRelease { get; set; }
+        public virtual DbSet<Filter> Filter { get; set; }
+        public virtual DbSet<FilterSeries> FilterSeries { get; set; }
+        public virtual DbSet<Release> Release { get; set; }
     }
 }

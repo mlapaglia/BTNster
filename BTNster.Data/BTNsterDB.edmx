@@ -4,20 +4,44 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BTNsterModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\Code\BTNster\BTNster.Data\BTNster.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'main.BTNRelease' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+    <Schema Namespace="BTNsterModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\Users\mlapaglia\Documents\GitHub\BTNster\BTNster.Data\BTNster.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BTNRelease">
           <Key>
-            <PropertyRef Name="ReleaseID" />
-            <PropertyRef Name="Series" />
-            <PropertyRef Name="Season" />
-            <PropertyRef Name="Episode" />
+            <PropertyRef Name="BTNReleaseID" />
           </Key>
           <Property Name="ReleaseID" Type="integer" Nullable="false" />
-          <Property Name="Series" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
-          <Property Name="Season" Type="integer" Nullable="false" />
-          <Property Name="Episode" Type="integer" Nullable="false" />
+          <Property Name="BTNReleaseID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Series" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Season" Type="integer" />
+          <Property Name="Episode" Type="integer" />
+        </EntityType>
+        <EntityType Name="Filter">
+          <Key>
+            <PropertyRef Name="FilterID" />
+          </Key>
+          <Property Name="FilterID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FilterTitle" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Containers" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Sources" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Resolutions" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Codecs" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="RememberHistory" Type="bit" />
+          <Property Name="DownloadBetterReleases" Type="bit" />
+          <Property Name="SceneYes" Type="bit" />
+          <Property Name="SceneNo" Type="bit" />
+        </EntityType>
+        <EntityType Name="FilterSeries">
+          <Key>
+            <PropertyRef Name="FilterSeriesID" />
+          </Key>
+          <Property Name="FilterID" Type="integer" Nullable="false" />
+          <Property Name="FilterSeriesID" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SeriesName" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="SeriesTitle" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="SeasonNumber" Type="integer" />
+          <Property Name="EpisodeNumber" Type="integer" />
         </EntityType>
         <EntityType Name="Release">
           <Key>
@@ -27,68 +51,189 @@ warning 6002: The table/view 'main.BTNRelease' does not have a primary key defin
           <Property Name="RawIRCAnnounce" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
           <Property Name="RawIRCAnnounceDate" Type="nvarchar" MaxLength="2147483647" Nullable="false" />
         </EntityType>
+        <Association Name="FK_BTNRelease_0_0">
+          <End Role="Release" Type="Self.Release" Multiplicity="1" />
+          <End Role="BTNRelease" Type="Self.BTNRelease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Release">
+              <PropertyRef Name="ReleaseID" />
+            </Principal>
+            <Dependent Role="BTNRelease">
+              <PropertyRef Name="ReleaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FilterSeries_0_0">
+          <End Role="Filter" Type="Self.Filter" Multiplicity="1" />
+          <End Role="FilterSeries" Type="Self.FilterSeries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filter">
+              <PropertyRef Name="FilterID" />
+            </Principal>
+            <Dependent Role="FilterSeries">
+              <PropertyRef Name="FilterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BTNsterModelStoreContainer">
+          <EntitySet Name="BTNRelease" EntityType="Self.BTNRelease" store:Type="Tables" />
+          <EntitySet Name="Filter" EntityType="Self.Filter" store:Type="Tables" />
+          <EntitySet Name="FilterSeries" EntityType="Self.FilterSeries" store:Type="Tables" />
           <EntitySet Name="Release" EntityType="Self.Release" store:Type="Tables" />
-          <EntitySet Name="BTNRelease" EntityType="Self.BTNRelease" store:Type="Tables">
-            <DefiningQuery>SELECT 
-[BTNRelease].[ReleaseID] AS [ReleaseID], 
-[BTNRelease].[Series] AS [Series], 
-[BTNRelease].[Season] AS [Season], 
-[BTNRelease].[Episode] AS [Episode]
-FROM [BTNRelease] AS [BTNRelease]</DefiningQuery>
-          </EntitySet>
+          <AssociationSet Name="FK_BTNRelease_0_0" Association="Self.FK_BTNRelease_0_0">
+            <End Role="Release" EntitySet="Release" />
+            <End Role="BTNRelease" EntitySet="BTNRelease" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FilterSeries_0_0" Association="Self.FK_FilterSeries_0_0">
+            <End Role="Filter" EntitySet="Filter" />
+            <End Role="FilterSeries" EntitySet="FilterSeries" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BTNsterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BTNsterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BTNRelease" EntityType="BTNsterModel.BTNRelease" />
+          <EntitySet Name="Filter" EntityType="BTNsterModel.Filter" />
+          <EntitySet Name="FilterSeries" EntityType="BTNsterModel.FilterSeries" />
+          <EntitySet Name="Release" EntityType="BTNsterModel.Release" />
+          <AssociationSet Name="FK_BTNRelease_0_0" Association="BTNsterModel.FK_BTNRelease_0_0">
+            <End Role="Release" EntitySet="Release" />
+            <End Role="BTNRelease" EntitySet="BTNRelease" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FilterSeries_0_0" Association="BTNsterModel.FK_FilterSeries_0_0">
+            <End Role="Filter" EntitySet="Filter" />
+            <End Role="FilterSeries" EntitySet="FilterSeries" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BTNRelease">
+          <Key>
+            <PropertyRef Name="BTNReleaseID" />
+          </Key>
+          <Property Name="ReleaseID" Type="Int64" Nullable="false" />
+          <Property Name="BTNReleaseID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Series" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Season" Type="Int64" />
+          <Property Name="Episode" Type="Int64" />
+          <NavigationProperty Name="Release" Relationship="BTNsterModel.FK_BTNRelease_0_0" FromRole="BTNRelease" ToRole="Release" />
+        </EntityType>
+        <EntityType Name="Filter">
+          <Key>
+            <PropertyRef Name="FilterID" />
+          </Key>
+          <Property Name="FilterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilterTitle" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Containers" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Sources" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Resolutions" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Codecs" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" />
+          <Property Name="EndDate" Type="DateTime" />
+          <Property Name="RememberHistory" Type="Boolean" />
+          <Property Name="DownloadBetterReleases" Type="Boolean" />
+          <Property Name="SceneYes" Type="Boolean" />
+          <Property Name="SceneNo" Type="Boolean" />
+          <NavigationProperty Name="FilterSeries" Relationship="BTNsterModel.FK_FilterSeries_0_0" FromRole="Filter" ToRole="FilterSeries" />
+        </EntityType>
+        <EntityType Name="FilterSeries">
+          <Key>
+            <PropertyRef Name="FilterSeriesID" />
+          </Key>
+          <Property Name="FilterID" Type="Int64" Nullable="false" />
+          <Property Name="FilterSeriesID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SeriesName" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="SeriesTitle" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="SeasonNumber" Type="Int64" />
+          <Property Name="EpisodeNumber" Type="Int64" />
+          <NavigationProperty Name="Filter" Relationship="BTNsterModel.FK_FilterSeries_0_0" FromRole="FilterSeries" ToRole="Filter" />
+        </EntityType>
         <EntityType Name="Release">
           <Key>
             <PropertyRef Name="ReleaseID" />
           </Key>
           <Property Name="ReleaseID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RawIRCAnnounce" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RawIRCAnnounceDate" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RawIRCAnnounce" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="RawIRCAnnounceDate" Type="String" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BTNRelease" Relationship="BTNsterModel.FK_BTNRelease_0_0" FromRole="Release" ToRole="BTNRelease" />
         </EntityType>
-        <EntityType Name="BTNRelease">
-          <Key>
-            <PropertyRef Name="ReleaseID" />
-            <PropertyRef Name="Series" />
-            <PropertyRef Name="Season" />
-            <PropertyRef Name="Episode" />
-          </Key>
-          <Property Name="ReleaseID" Type="Int64" Nullable="false" />
-          <Property Name="Series" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Season" Type="Int64" Nullable="false" />
-          <Property Name="Episode" Type="Int64" Nullable="false" />
-        </EntityType>
-        <EntityContainer Name="BTNsterEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Releases" EntityType="Self.Release" />
-          <EntitySet Name="BTNReleases" EntityType="Self.BTNRelease" />
-        </EntityContainer>
-      </Schema>
+        <Association Name="FK_BTNRelease_0_0">
+          <End Type="BTNsterModel.Release" Role="Release" Multiplicity="1" />
+          <End Type="BTNsterModel.BTNRelease" Role="BTNRelease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Release">
+              <PropertyRef Name="ReleaseID" />
+            </Principal>
+            <Dependent Role="BTNRelease">
+              <PropertyRef Name="ReleaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FilterSeries_0_0">
+          <End Type="BTNsterModel.Filter" Role="Filter" Multiplicity="1" />
+          <End Type="BTNsterModel.FilterSeries" Role="FilterSeries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filter">
+              <PropertyRef Name="FilterID" />
+            </Principal>
+            <Dependent Role="FilterSeries">
+              <PropertyRef Name="FilterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BTNsterModelStoreContainer" CdmEntityContainer="BTNsterEntities">
-          <EntitySetMapping Name="Releases">
-            <EntityTypeMapping TypeName="BTNsterModel.Release">
-              <MappingFragment StoreEntitySet="Release">
+          <EntitySetMapping Name="BTNRelease">
+            <EntityTypeMapping TypeName="BTNsterModel.BTNRelease">
+              <MappingFragment StoreEntitySet="BTNRelease">
+                <ScalarProperty Name="Episode" ColumnName="Episode" />
+                <ScalarProperty Name="Season" ColumnName="Season" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="BTNReleaseID" ColumnName="BTNReleaseID" />
                 <ScalarProperty Name="ReleaseID" ColumnName="ReleaseID" />
-                <ScalarProperty Name="RawIRCAnnounce" ColumnName="RawIRCAnnounce" />
-                <ScalarProperty Name="RawIRCAnnounceDate" ColumnName="RawIRCAnnounceDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BTNReleases">
-            <EntityTypeMapping TypeName="BTNsterModel.BTNRelease">
-              <MappingFragment StoreEntitySet="BTNRelease">
+          <EntitySetMapping Name="Filter">
+            <EntityTypeMapping TypeName="BTNsterModel.Filter">
+              <MappingFragment StoreEntitySet="Filter">
+                <ScalarProperty Name="SceneNo" ColumnName="SceneNo" />
+                <ScalarProperty Name="SceneYes" ColumnName="SceneYes" />
+                <ScalarProperty Name="DownloadBetterReleases" ColumnName="DownloadBetterReleases" />
+                <ScalarProperty Name="RememberHistory" ColumnName="RememberHistory" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Codecs" ColumnName="Codecs" />
+                <ScalarProperty Name="Resolutions" ColumnName="Resolutions" />
+                <ScalarProperty Name="Sources" ColumnName="Sources" />
+                <ScalarProperty Name="Containers" ColumnName="Containers" />
+                <ScalarProperty Name="FilterTitle" ColumnName="FilterTitle" />
+                <ScalarProperty Name="FilterID" ColumnName="FilterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FilterSeries">
+            <EntityTypeMapping TypeName="BTNsterModel.FilterSeries">
+              <MappingFragment StoreEntitySet="FilterSeries">
+                <ScalarProperty Name="EpisodeNumber" ColumnName="EpisodeNumber" />
+                <ScalarProperty Name="SeasonNumber" ColumnName="SeasonNumber" />
+                <ScalarProperty Name="SeriesTitle" ColumnName="SeriesTitle" />
+                <ScalarProperty Name="SeriesName" ColumnName="SeriesName" />
+                <ScalarProperty Name="FilterSeriesID" ColumnName="FilterSeriesID" />
+                <ScalarProperty Name="FilterID" ColumnName="FilterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Release">
+            <EntityTypeMapping TypeName="BTNsterModel.Release">
+              <MappingFragment StoreEntitySet="Release">
+                <ScalarProperty Name="RawIRCAnnounceDate" ColumnName="RawIRCAnnounceDate" />
+                <ScalarProperty Name="RawIRCAnnounce" ColumnName="RawIRCAnnounce" />
                 <ScalarProperty Name="ReleaseID" ColumnName="ReleaseID" />
-                <ScalarProperty Name="Series" ColumnName="Series" />
-                <ScalarProperty Name="Season" ColumnName="Season" />
-                <ScalarProperty Name="Episode" ColumnName="Episode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -106,7 +251,7 @@ FROM [BTNRelease] AS [BTNRelease]</DefiningQuery>
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

@@ -1,5 +1,5 @@
 ﻿@using System.Linq
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<BTNster.Models.Filters.EditFilterModel>
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<BTNster.Web.Models.Filters.EditFilterModel>
 @{
     Layout = "Views/_Layout.cshtml";
 }
@@ -114,7 +114,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (BTNster.Models.Series series in Model.Series)
+                                @foreach (BTNster.Web.Models.Filters.Series series in Model.Series)
                             {
                             <tr>
                                 <td>

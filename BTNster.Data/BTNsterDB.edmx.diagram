@@ -4,9 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1dbd6fc56107412abbe0def27e87d10b" Name="Diagram1">
-        <EntityTypeShape EntityType="BTNsterModel.Release" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BTNsterModel.BTNRelease" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="ee5c23449b9b45429d7203c475003db3" Name="Diagram1">
+        <EntityTypeShape EntityType="BTNsterModel.BTNRelease" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="BTNsterModel.Filter" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="BTNsterModel.FilterSeries" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="BTNsterModel.Release" Width="1.5" PointX="0.75" PointY="1.125" />
+        <AssociationConnector Association="BTNsterModel.FK_BTNRelease_0_0" />
+        <AssociationConnector Association="BTNsterModel.FK_FilterSeries_0_0" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

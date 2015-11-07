@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Code\BTNster\BTNster.Data\BTNsterDB.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\mlapaglia\Documents\GitHub\BTNster\BTNster.Data\BTNsterDB.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

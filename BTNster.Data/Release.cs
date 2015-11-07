@@ -14,8 +14,17 @@ namespace BTNster.Data
     
     public partial class Release
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Release()
+        {
+            this.BTNRelease = new HashSet<BTNRelease>();
+        }
+    
         public long ReleaseID { get; set; }
         public string RawIRCAnnounce { get; set; }
         public string RawIRCAnnounceDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BTNRelease> BTNRelease { get; set; }
     }
 }
